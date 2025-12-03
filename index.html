@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxuryStay Hotel Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                <h1>LuxuryStay</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="guests">
+                    <i class="fas fa-users"></i>
+                    <span>Guests</span>
+                </li>
+                <li class="nav-item" data-section="rooms">
+                    <i class="fas fa-bed"></i>
+                    <span>Rooms</span>
+                </li>
+                <li class="nav-item" data-section="bookings">
+                    <i class="fas fa-calendar-check"></i>
+                    <span>Bookings</span>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container">
+        <!-- Guests Section -->
+        <section id="guests" class="section active">
+            <div class="section-header">
+                <h2>Guest Management</h2>
+                <button class="btn btn-primary" id="addGuestBtn">
+                    <i class="fas fa-plus"></i> Add Guest
+                </button>
+            </div>
+            
+            <div class="content-wrapper">
+                <!-- Guest List -->
+                <div class="card list-card">
+                    <h3>Guest List</h3>
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="guestSearch" placeholder="Search guests...">
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="guestTableBody">
+                                <!-- Guest data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button id="prevGuests" class="btn btn-outline">Previous</button>
+                        <span id="guestPageInfo">Page 1 of 1</span>
+                        <button id="nextGuests" class="btn btn-outline">Next</button>
+                    </div>
+                </div>
+
+                <!-- Guest Form -->
+                <div class="card form-card">
+                    <h3 id="guestFormTitle">Add New Guest</h3>
+                    <form id="guestForm">
+                        <input type="hidden" id="guestId">
+                        
+                        <div class="form-group">
+                            <label for="guestName">Full Name</label>
+                            <input type="text" id="guestName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestEmail">Email Address</label>
+                            <input type="email" id="guestEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestPhone">Phone Number</label>
+                            <input type="text" id="guestPhone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="guestAddress">Street Address</label>
+                            <input type="text" id="guestAddress">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="guestCity">City</label>
+                                <input type="text" id="guestCity">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="guestCountry">Country</label>
+                                <input type="text" id="guestCountry">
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="guestSubmitBtn">
+                                <i class="fas fa-save"></i> Save Guest
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="guestCancelBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rooms Section -->
+        <section id="rooms" class="section">
+            <div class="section-header">
+                <h2>Room Management</h2>
+                <button class="btn btn-primary" id="addRoomBtn">
+                    <i class="fas fa-plus"></i> Add Room
+                </button>
+            </div>
+            
+            <div class="content-wrapper">
+                <!-- Room List -->
+                <div class="card list-card">
+                    <h3>Room List</h3>
+                    <div class="filters">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="roomSearch" placeholder="Search rooms...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="roomStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="available">Available</option>
+                                <option value="occupied">Occupied</option>
+                                <option value="maintenance">Maintenance</option>
+                            </select>
+                            <select id="roomTypeFilter">
+                                <option value="">All Types</option>
+                                <option value="single">Single</option>
+                                <option value="double">Double</option>
+                                <option value="suite">Suite</option>
+                                <option value="deluxe">Deluxe</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Room #</th>
+                                    <th>Type</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th>Capacity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="roomTableBody">
+                                <!-- Room data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button id="prevRooms" class="btn btn-outline">Previous</button>
+                        <span id="roomPageInfo">Page 1 of 1</span>
+                        <button id="nextRooms" class="btn btn-outline">Next</button>
+                    </div>
+                </div>
+
+                <!-- Room Form -->
+                <div class="card form-card">
+                    <h3 id="roomFormTitle">Add New Room</h3>
+                    <form id="roomForm">
+                        <input type="hidden" id="roomId">
+                        
+                        <div class="form-group">
+                            <label for="roomNumber">Room Number</label>
+                            <input type="text" id="roomNumber" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roomType">Room Type</label>
+                            <select id="roomType" required>
+                                <option value="">Select Type</option>
+                                <option value="single">Single</option>
+                                <option value="double">Double</option>
+                                <option value="suite">Suite</option>
+                                <option value="deluxe">Deluxe</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roomPrice">Price per Night ($)</label>
+                            <input type="number" id="roomPrice" min="0" step="0.01" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roomCapacity">Capacity (Persons)</label>
+                            <input type="number" id="roomCapacity" min="1" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roomStatus">Status</label>
+                            <select id="roomStatus" required>
+                                <option value="available">Available</option>
+                                <option value="occupied">Occupied</option>
+                                <option value="maintenance">Maintenance</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="roomAmenities">Amenities (comma separated)</label>
+                            <input type="text" id="roomAmenities" placeholder="WiFi, TV, AC, Mini-bar">
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="roomSubmitBtn">
+                                <i class="fas fa-save"></i> Save Room
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="roomCancelBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bookings Section -->
+        <section id="bookings" class="section">
+            <div class="section-header">
+                <h2>Booking Management</h2>
+                <button class="btn btn-primary" id="addBookingBtn">
+                    <i class="fas fa-plus"></i> Create Booking
+                </button>
+            </div>
+            
+            <div class="content-wrapper">
+                <!-- Booking List -->
+                <div class="card list-card">
+                    <h3>Booking List</h3>
+                    <div class="filters">
+                        <div class="search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="bookingSearch" placeholder="Search bookings...">
+                        </div>
+                        <div class="filter-options">
+                            <select id="bookingStatusFilter">
+                                <option value="">All Status</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="checked-in">Checked-in</option>
+                                <option value="checked-out">Checked-out</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Guest</th>
+                                    <th>Room</th>
+                                    <th>Check-in</th>
+                                    <th>Check-out</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookingTableBody">
+                                <!-- Booking data will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button id="prevBookings" class="btn btn-outline">Previous</button>
+                        <span id="bookingPageInfo">Page 1 of 1</span>
+                        <button id="nextBookings" class="btn btn-outline">Next</button>
+                    </div>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="card form-card">
+                    <h3 id="bookingFormTitle">Create New Booking</h3>
+                    <form id="bookingForm">
+                        <input type="hidden" id="bookingId">
+                        
+                        <div class="form-group">
+                            <label for="bookingGuest">Guest</label>
+                            <select id="bookingGuest" required>
+                                <option value="">Select Guest</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookingRoom">Room</label>
+                            <select id="bookingRoom" required>
+                                <option value="">Select Room</option>
+                            </select>
+                            <div class="room-info" id="roomInfo"></div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="checkInDate">Check-in Date</label>
+                                <input type="date" id="checkInDate" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="checkOutDate">Check-out Date</label>
+                                <input type="date" id="checkOutDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bookingStatus">Status</label>
+                            <select id="bookingStatus" required>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="checked-in">Checked-in</option>
+                                <option value="checked-out">Checked-out</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="paymentStatus">Payment Status</label>
+                            <select id="paymentStatus" required>
+                                <option value="pending">Pending</option>
+                                <option value="paid">Paid</option>
+                                <option value="refunded">Refunded</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="specialRequests">Special Requests</label>
+                            <textarea id="specialRequests" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="booking-summary">
+                            <h4>Booking Summary</h4>
+                            <div class="summary-item">
+                                <span>Room Price:</span>
+                                <span id="roomPriceDisplay">$0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Nights:</span>
+                                <span id="nightsCount">0</span>
+                            </div>
+                            <div class="summary-item total">
+                                <span>Total Amount:</span>
+                                <span id="totalAmount">$0</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary" id="bookingSubmitBtn">
+                                <i class="fas fa-save"></i> Save Booking
+                            </button>
+                            <button type="button" class="btn btn-secondary" id="bookingCancelBtn">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle toast-icon"></i>
+            <span class="toast-message">Operation completed successfully!</span>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal">
+        <div class="modal-content">
+            <h3>Confirm Delete</h3>
+            <p id="deleteMessage">Are you sure you want to delete this item?</p>
+            <div class="modal-actions">
+                <button id="confirmDelete" class="btn btn-danger">Delete</button>
+                <button id="cancelDelete" class="btn btn-secondary">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
