@@ -1,5 +1,5 @@
-## Base URL: https://frontend-rouge-one-99.vercel.app/
-## Base URL: https://hotel-management-9-egfa.onrender.com
+## Base URL Frontend: https://frontend-rouge-one-99.vercel.app/
+## Base URL Backend: https://hotel-management-9-egfa.onrender.com
 
 # 📋 Api Endpoints
 ```
